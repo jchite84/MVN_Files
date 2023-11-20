@@ -1,0 +1,51 @@
+<html>
+
+<form id = "TDEEForm">
+  <input type="radio" id="male" name="sex" value="MALE">
+  <label for="html">MALE</label>
+  <input type="radio" id="female" name="sex" value="FEMALE">
+  <label for="html">FEMALE</label><br>
+  <label for="fname">Weight in Lbs:</label><br>
+  <input type="text" id="weight" name="weight"><br>
+  <label for="fname">Height in Inches:</label><br>
+  <input type="text" id="height" name="height"><br>
+  <label for="fname">Age in Years:</label><br>
+  <input type="text" id="age" name="age"><br>
+  <label for="fname">Activity Level</label><br>
+  <select id="activityLevel" name="activityLevel">
+  <option value="none">Select Activity Level</option>
+  <option value="sedentary">Sedentary</option>
+  <option value="light">Lightly Active</option>
+  <option value="very">Very Active</option>
+  </select><br>
+  <div id="BMR"></div>
+  <div id="TDEE"></div>
+  <input type="button" value="submit" onclick="calculateTotal()">
+  <input type="button" value="reset" onclick="reset()">
+</form>
+<script>
+
+
+function calculateTotal(){
+//66 + (6.23 × weight in pounds) + (12.7 × height in inches) − (6.8 × age in years)
+//655 + (4.35 × weight in pounds) + (4.7 × height in inches) − (4.7 × age in years)
+var theForm = document.forms["TDEEForm"];
+var weight = theForm.elements["weight"];
+var height = theForm.elements["height"];
+var age = theForm.elements["age"];
+var sex = theForm.elements["sex"];
+if(sex.value == "MALE"){
+	document.getElementById('BMR').innerHTML = 66 + (6.23 * parseInt(weight.value)) + (12.7 * parseInt(height.value)) - (6.8 * parseInt(age.value));
+} else {
+	document.getElementById('BMR').innerHTML = 655 + (4.35 * parseInt(weight.value)) + (4.7 * parseInt(height.value)) - (4.7 * parseInt(age.value));
+
+}
+}
+
+function reset(){
+var theForm = document.forms["TDEEForm"];
+document.getElementById('BMR').innerHTML = "";
+theForm.reset();
+}
+</script>
+</html>
